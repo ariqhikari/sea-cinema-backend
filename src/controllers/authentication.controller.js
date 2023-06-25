@@ -32,7 +32,7 @@ const login = async (req, res) => {
       status: true,
       message: "Success login account user.",
       data: {
-        user: user,
+        user,
         token,
       },
     });
@@ -55,7 +55,7 @@ const register = async (req, res) => {
       status: true,
       message: "Success register account user.",
       data: {
-        user: user,
+        user,
       },
     });
   } catch (error) {
@@ -78,9 +78,7 @@ const verify = async (req, res) => {
       status: false,
       message: "Succes verify account user.",
       data: {
-        user: {
-          ...user.toJSON(),
-        },
+        user,
       },
     });
   } catch (error) {

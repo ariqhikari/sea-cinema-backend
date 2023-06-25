@@ -36,9 +36,21 @@ const store = async (req, res) => {
       });
     }
 
+    // Not fix
+    let showtime = await showtime_model.findOne({
+      where: { time: req.body.time },
+    });
+
+    if (!showtime) {
+      return api_response(404, res, req, {
+        status: false,
+        message: "Showtime with the same time is already created.",
+      });
+    }
+
     req.body.id = `SHW-${v1()}`;
     req.body.seats = generateSeats();
-    const showtime = await showtime_model.create(req.body);
+    showtime = await showtime_model.create(req.body);
 
     return api_response(200, res, req, {
       status: true,

@@ -15,25 +15,26 @@ const model = db_config.sequilize.define(
       type: db_config.Sequilize.DataTypes.STRING,
       allowNull: false,
     },
-    movieId: {
-      type: db_config.Sequilize.DataTypes.STRING,
-      allowNull: false,
-    },
     showTimeId: {
       type: db_config.Sequilize.DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
+    },
+    bookingSeat: {
+      type: db_config.Sequilize.DataTypes.JSON,
+      allowNull: true,
     },
     totalCost: {
       type: db_config.Sequilize.DataTypes.INTEGER,
       allowNull: false,
     },
-    bookingSeat: {
-      type: db_config.Sequilize.DataTypes.STRING,
-      allowNull: false,
-    },
     status: {
-      type: db_config.Sequilize.DataTypes.STRING,
-      allowNull: false,
+      type: db_config.Sequilize.DataTypes.ENUM(
+        "SUCCESS",
+        "CANCEL",
+        "TOPUP",
+        "WITHDRAW"
+      ),
+      defaultValue: "SUCCESS",
     },
   },
   { timestamps: true }

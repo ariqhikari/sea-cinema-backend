@@ -1,7 +1,8 @@
 // Route
 const index_route = require("./src/routes/api/index.route");
 const authentication_route = require("./src/routes/api/authentication.route");
-// const user_route = require("./src/routes/api/user.route");
+const transaction_route = require("./src/routes/api/transaction.route");
+const user_route = require("./src/routes/api/user.route");
 // Admin
 const admin_user_route = require("./src/routes/api/admin/user.route");
 const admin_movie_route = require("./src/routes/api/admin/movie.route");
@@ -31,7 +32,8 @@ sync_database();
 
 app.use(index_route);
 app.use(authentication_route);
-// app.use(user_route);
+app.use(transaction_route);
+app.use(user_route);
 app.use(admin_user_route);
 app.use(admin_movie_route);
 app.use(admin_showtime_route);

@@ -1,6 +1,9 @@
 const user_model = require("../databases/models/user.model");
+const transaction_model = require("../databases/models/transaction.model");
 const { api_response } = require("../libs/response.lib");
+const { generateRandomInt } = require("../libs/general.lib");
 
+const { v1 } = require("uuid");
 const jwt = require("jsonwebtoken");
 
 const profile = async (req, res) => {
@@ -8,16 +11,12 @@ const profile = async (req, res) => {
     const user = await user_model.findOne({
       where: { id: jwt.decode(req.headers.token).id },
     });
-    const role = await user.getRole();
 
     return api_response(200, res, req, {
       status: true,
       message: "Success get data profile.",
       data: {
-        user: {
-          ...user.toJSON(),
-          role,
-        },
+        user,
       },
     });
   } catch (error) {
@@ -41,6 +40,18 @@ const update_profile = async (req, res) => {
       });
 
     user.update(req.body);
+
+    if (req.body.transaction) {
+      const transactionBody = {
+        id: `TRS-${v1()}`,
+        transactionCode: `CODE-${generateRandomInt(0o0, 99999999)}`,
+        userId: user.id,
+        totalCost: req.body.totalCost,
+        status: req.body.transaction,
+      };
+
+      await transaction_model.create(transactionBody);
+    }
 
     return api_response(200, res, req, {
       status: true,
