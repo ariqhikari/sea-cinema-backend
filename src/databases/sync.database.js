@@ -38,15 +38,6 @@ const sync = () => {
     foreignKey: "userId",
   });
 
-  // Movie & Transaction
-  movie.hasMany(transaction, {
-    as: "transactions",
-    foreignKey: "movieId",
-  });
-  transaction.belongsTo(movie, {
-    foreignKey: "movieId",
-  });
-
   // Showtime & Transaction
   showtime.hasMany(transaction, {
     as: "transactions",

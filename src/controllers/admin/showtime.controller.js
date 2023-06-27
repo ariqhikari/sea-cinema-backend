@@ -6,7 +6,7 @@ const { v1 } = require("uuid");
 
 const list_showtime = async (req, res) => {
   try {
-    const showtimes = await showtime_model.findAll();
+    const showtimes = await showtime_model.findAll({ include: ["movie"] });
 
     return api_response(200, res, req, {
       status: true,
@@ -36,7 +36,7 @@ const store = async (req, res) => {
       });
     }
 
-    // Not fix
+    // TODO: Cek jika showtime telah dibuat di jam yang sama
     let showtime = await showtime_model.findOne({
       where: { time: req.body.time },
     });

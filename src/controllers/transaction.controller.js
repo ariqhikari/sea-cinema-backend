@@ -1,5 +1,6 @@
 const user_model = require("../databases/models/user.model");
 const showtime_model = require("../databases/models/showtime.model");
+const movie_model = require("../databases/models/movie.model");
 const transaction_model = require("../databases/models/transaction.model");
 const ticket_model = require("../databases/models/ticket.model");
 const { api_response } = require("../libs/response.lib");
@@ -13,13 +14,29 @@ const list_transaction = async (req, res) => {
     const user = await user_model.findOne({
       where: { id: jwt.decode(req.headers.token).id },
     });
+
     let transactions;
+    let include = [
+      {
+        model: showtime_model,
+        as: "showtime",
+        include: [
+          {
+            model: movie_model,
+            as: "movie",
+          },
+        ],
+      },
+    ];
 
     if (user.role == "ADMIN") {
-      transactions = await transaction_model.findAll();
+      transactions = await transaction_model.findAll({
+        include,
+      });
     } else {
       transactions = await transaction_model.findAll({
         where: { userId: user.id },
+        include,
       });
     }
 
