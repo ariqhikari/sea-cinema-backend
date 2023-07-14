@@ -38,10 +38,10 @@ const store = async (req, res) => {
 
     // TODO: Cek jika showtime telah dibuat di jam yang sama
     let showtime = await showtime_model.findOne({
-      where: { time: req.body.time },
+      where: { date: req.body.date, time: req.body.time },
     });
 
-    if (!showtime) {
+    if (showtime) {
       return api_response(404, res, req, {
         status: false,
         message: "Showtime with the same time is already created.",
@@ -159,4 +159,5 @@ module.exports = {
   store,
   update,
   destroy,
+  generateSeats,
 };

@@ -3,6 +3,8 @@ const index_route = require("./src/routes/api/index.route");
 const authentication_route = require("./src/routes/api/authentication.route");
 const transaction_route = require("./src/routes/api/transaction.route");
 const user_route = require("./src/routes/api/user.route");
+const movie_route = require("./src/routes/api/movie.route");
+const showtime_route = require("./src/routes/api/showtime.route");
 // Admin
 const admin_user_route = require("./src/routes/api/admin/user.route");
 const admin_movie_route = require("./src/routes/api/admin/movie.route");
@@ -28,12 +30,14 @@ app.use(cors(cors_option));
 app.set("trust proxy", true);
 
 sync_database();
-// factory();
+factory();
 
 app.use(index_route);
 app.use(authentication_route);
 app.use(transaction_route);
 app.use(user_route);
+app.use(movie_route);
+app.use(showtime_route);
 app.use(admin_user_route);
 app.use(admin_movie_route);
 app.use(admin_showtime_route);

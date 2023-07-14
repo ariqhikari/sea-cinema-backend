@@ -44,14 +44,9 @@ const store_showtime = [
 
 const store_transaction = [
   check("userId").notEmpty().withMessage("User ID is required."),
-  check("movieId").notEmpty().withMessage("Movie ID is required."),
   check("showTimeId").notEmpty().withMessage("Showtime ID is required."),
   check("totalCost").notEmpty().withMessage("Total Cost is required."),
-  check("bookingSeat")
-    .notEmpty()
-    .withMessage("Booking Seat is required.")
-    .isArray()
-    .withMessage("Booking Seat must be array."),
+  check("bookingSeat").notEmpty().withMessage("Booking Seat is required."),
 ];
 
 module.exports = {

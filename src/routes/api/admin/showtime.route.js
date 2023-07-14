@@ -14,8 +14,11 @@ const express = require("express");
 
 const router = express.Router();
 
-router.get(`${api}/admin/showtimes`, auth_middleware, (req, res) =>
-  list_showtime(req, res)
+router.get(
+  `${api}/admin/showtimes`,
+  auth_middleware,
+  admin_middleware,
+  (req, res) => list_showtime(req, res)
 );
 
 router.post(

@@ -30,8 +30,11 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-router.get(`${api}/admin/movies`, auth_middleware, (req, res) =>
-  list_movie(req, res)
+router.get(
+  `${api}/admin/movies`,
+  auth_middleware,
+  admin_middleware,
+  (req, res) => list_movie(req, res)
 );
 
 router.post(

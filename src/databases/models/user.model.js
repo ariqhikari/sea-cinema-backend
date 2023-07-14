@@ -26,7 +26,7 @@ const model = db_config.sequilize.define(
     },
     balance: {
       type: db_config.Sequilize.DataTypes.INTEGER,
-      defaultValue: 500000,
+      defaultValue: 0,
     },
     avatar: {
       type: db_config.Sequilize.DataTypes.STRING,

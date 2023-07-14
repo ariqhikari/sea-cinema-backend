@@ -72,7 +72,7 @@ const booking = async (req, res) => {
     req.body.transactionCode = `CODE-${generateRandomInt(0o0, 99999999)}`;
 
     const transaction = await transaction_model.create(req.body);
-    const seats = showtime.seats;
+    const seats = JSON.parse(showtime.seats);
 
     transaction.bookingSeat.forEach(async (seat) => {
       seats[seat] = true;

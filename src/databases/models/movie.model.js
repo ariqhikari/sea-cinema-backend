@@ -19,6 +19,10 @@ const model = db_config.sequilize.define(
       type: db_config.Sequilize.DataTypes.STRING,
       allowNull: false,
     },
+    duration: {
+      type: db_config.Sequilize.DataTypes.STRING,
+      allowNull: false,
+    },
     poster: {
       type: db_config.Sequilize.DataTypes.STRING,
       allowNull: false,
@@ -33,6 +37,10 @@ const model = db_config.sequilize.define(
     },
     price: {
       type: db_config.Sequilize.DataTypes.INTEGER,
+      allowNull: false,
+    },
+    genres: {
+      type: db_config.Sequilize.DataTypes.JSON,
       allowNull: false,
     },
   },
