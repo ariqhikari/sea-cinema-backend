@@ -18,7 +18,7 @@ Checkout the API Demo [here](https://api-sea-cinema.auroraweb.id/api).
 
 - Auth
 - Now Playing Movies
-- Select Showtime
+- Select Showtimes
 - E-Wallet (for ticket transaction)
 
 ## Technology
