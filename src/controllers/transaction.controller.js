@@ -32,11 +32,13 @@ const list_transaction = async (req, res) => {
     if (user.role == "ADMIN") {
       transactions = await transaction_model.findAll({
         include,
+        order: [["updatedAt", "DESC"]],
       });
     } else {
       transactions = await transaction_model.findAll({
         where: { userId: user.id },
         include,
+        order: [["updatedAt", "DESC"]],
       });
     }
 
@@ -148,8 +150,8 @@ const cancelBooking = async (req, res) => {
       });
     }
 
-    const seats = showtime.seats;
-    transaction.bookingSeat.forEach((seat) => {
+    const seats = JSON.parse(showtime.seats);
+    JSON.parse(transaction.bookingSeat).forEach((seat) => {
       seats[seat] = false;
     });
 
